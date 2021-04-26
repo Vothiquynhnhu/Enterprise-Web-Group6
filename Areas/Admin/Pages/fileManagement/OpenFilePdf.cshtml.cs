@@ -21,9 +21,10 @@ namespace Album.Areas.Admin.Pages.fileManagement
         {
            _environment = environment;
         }
-        public void OnGet()
+        public void OnGet(string fileName)
         {
-            NameFile = "Proposal(Nhu).pdf";
+
+            NameFile = "aaa-a.pdf";
         }
 
 

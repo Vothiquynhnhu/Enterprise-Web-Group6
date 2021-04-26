@@ -1,0 +1,43 @@
+﻿@page "/gg/"
+@model Album.Areas.Admin.Pages.Deadlines.ViewListUserToGradeModel
+@{
+}
+
+<h1> View User Grade</h1>
+<form  method="post" asp-page="./ViewListUserToGrade">
+    <table border="1px" align="center" width="90%" height="auto">
+        <tr>
+            <th>FullName</th>
+            <th>Event</th>
+            <th>Deadline</th>
+            <th>Grade</th>
+
+        </tr>
+
+        @for (int i = 0; i < Model.viewUserGradesList.Count; i++)
+        {
+            <tr>
+                <td>
+                    <label asp-for="@Model.viewUserGradesList[i].FullName">@Model.viewUserGradesList[i].FullName</label>
+                    <input asp-for="@Model.viewUserGradesList[i].FullName" value="@Model.viewUserGradesList[i].FullName" hidden />
+                </td>
+                <td>
+                    <label asp-for="@Model.viewUserGradesList[i].NameEvent">@Model.viewUserGradesList[i].NameEvent</label>
+                    <input asp-for="@Model.viewUserGradesList[i].NameEvent" value="@Model.viewUserGradesList[i].NameEvent" hidden />
+                </td>
+                <td>
+
+                    <label asp-for="@Model.viewUserGradesList[i].NameDeadline"><a href="#">@Model.viewUserGradesList[i].NameDeadline</a></label>
+                    <input asp-for="@Model.viewUserGradesList[i].NameDeadline" value="@Model.viewUserGradesList[i].NameDeadline" hidden />
+                </td>
+                <td>
+                    <label asp-for="@Model.viewUserGradesList[i].NumberGrade" class="control-label"></label>
+                    <input asp-for="@Model.viewUserGradesList[i].DeadlineId" value="@Model.viewUserGradesList[i].DeadlineId" hidden />
+                    <input asp-for="@Model.viewUserGradesList[i].NumberGrade" class="form-control" />
+                    <span asp-validation-for="@Model.viewUserGradesList[i].NumberGrade" class="text-danger"></span>
+                </td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Save" />
+</form>

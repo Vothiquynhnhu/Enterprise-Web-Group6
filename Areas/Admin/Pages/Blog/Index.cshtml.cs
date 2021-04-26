@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Album.Data;
 using Album.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.Blog
 {//Admin,A Marketing Management,A Marketing Coordinator,Student
+    [Authorize(Roles = "Admin,A Marketing Management,A Marketing Coordinator")]
+
     public class IndexModel : PageModel
     {
         private readonly AppDbContext _context;

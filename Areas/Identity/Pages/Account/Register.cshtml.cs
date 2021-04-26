@@ -17,7 +17,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Album.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
+  //  [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<AppUser> _signInManager;
@@ -53,31 +54,31 @@ namespace Album.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Địa chỉ Email")]
+            [Display(Name = "Email address")]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "{0} dài từ {2} đến {1} ký tự.", MinimumLength = 3)]
+            [StringLength(100, ErrorMessage = "Account authenticated, waiting for redirection", MinimumLength = 3)]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu")]
+            [Display(Name = "password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Nhập lại mật khẩu")]
-            [Compare("Password", ErrorMessage = "Mật khẩu không giống nhau")]
+            [Display(Name = "Enter the password")]
+            [Compare("Password", ErrorMessage = "Passwords are not the same")]
             public string ConfirmPassword { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "{0} dài từ {2} đến {1} ký tự.", MinimumLength = 3)]
+            [StringLength(100, ErrorMessage = "{0} is between {2} and {1} characters long.", MinimumLength = 3)]
             [DataType(DataType.Text)]
-            [Display(Name="Tên tài khoản (viết liền - không dấu)")]
+            [Display(Name= "Account name (write immediately - without accent)")]
             public string UserName {set; get;}
 
 
             [Required]
             [StringLength(100, ErrorMessage = "Khong Dau", MinimumLength = 3)]
             [DataType(DataType.Text)]
-            [Display(Name = "Tên người dùng(không dấu)")]
+            [Display(Name = "Username (unsigned)")]
             public string FulllName { set; get; }
         }
 
@@ -117,8 +118,8 @@ namespace Album.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     // Gửi email    
-                    await _emailSender.SendEmailAsync(Input.Email, "Xác nhận địa chỉ email",
-                        $"Hãy xác nhận địa chỉ email bằng cách <a href='{callbackUrl}'>Bấm vào đây</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Verify email address",
+                        $"Please confirm email address by <a href='{callbackUrl}'>Click here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedEmail)
                     {

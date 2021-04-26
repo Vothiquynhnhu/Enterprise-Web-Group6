@@ -15,7 +15,7 @@ namespace Album.Models
         [DataType(DataType.Date)]
         public DateTime? Birthday {set; get;}
         public List<RegisterCourse> RegisterCourse { get; set; }
-        
+        public List<RegisterGrade> RegisterGrade { get; set; }
 
 
 

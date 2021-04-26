@@ -14,32 +14,32 @@ namespace Album.Models
         public int dl_Id { get; set; }
 
         
-        [Display(Name = "Tiêu đề")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
 
-        [Display(Name = "Thời hạn")]
+        [Display(Name = "Duration")]
         [DataType(DataType.Date)]
         public DateTime dl_TimeDeadline { get; set; }
 
 
-        [Display(Name = "Nội dung")]
+        [Display(Name = "Content")]
         public string dl_Description { set; get; }
 
 
-        [Display(Name = "Nộp bởi")]
+        [Display(Name = "Submitted by")]
         public string dl_CreateBy { set; get; }
 
 
-        [Display(Name = "Trạng thái")]
+        [Display(Name = "Status")]
         public string dl_Status { set; get; }
 
 
-        [Display(Name = "Chỉnh sửa bởi")]
+        [Display(Name = "Edited by")]
         public string dl_ModifiedBy { set; get; }
 
 
-        [Display(Name = "Ngày khởi tạo")]
+        [Display(Name = "Innitiated date")]
         [DataType(DataType.Date)]
         public DateTime dl_CreateDate { set; get; }
 
@@ -50,6 +50,8 @@ namespace Album.Models
         public List<UserFile> UserFile { get; set; }
 
         public List<Comment> Comment { get; set; }
+
+        
 
 
 

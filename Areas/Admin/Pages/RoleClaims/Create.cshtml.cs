@@ -8,9 +8,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Album.Models;
 using Album.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.RoleClaims
 {//Admin
+    [Authorize(Roles = "Admin")]
+
     public class CreateModel : PageModel
     {
         private readonly AppDbContext _context;

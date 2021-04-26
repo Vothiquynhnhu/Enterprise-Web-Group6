@@ -37,7 +37,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Không nạp được User 'user.Id'.");
+                return NotFound($"User 'user.Id' failed to load.");
             }
 
             CurrentLogins = await _userManager.GetLoginsAsync(user);
@@ -53,18 +53,18 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Không nạp được User 'user.Id'.");
+                return NotFound($"Failed to load User 'user.Id'.");
             }
 
             var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
             if (!result.Succeeded)
             {
-                StatusMessage = "Không xóa được.";
+                StatusMessage = "Can not remove.";
                 return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Đã hủy liên kết.";
+            StatusMessage = "Unlinked.";
             return RedirectToPage();
         }
 
@@ -84,26 +84,26 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Không nạp được User 'user.Id'.");
+                return NotFound($"Failed to load User 'user.Id'.");
             }
 
             var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
             if (info == null)
             {
-                throw new InvalidOperationException($"Lỗi ID '{user.Id}'.");
+                throw new InvalidOperationException($"Error ID '{user.Id}'.");
             }
 
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                StatusMessage = "Lỗi - dịch vụ đã liên kết với tài khoản khác";
+                StatusMessage = "Error - service linked with another account";
                 return RedirectToPage();
             }
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "Đã liên kết";
+            StatusMessage = "Already linked";
             return RedirectToPage();
         }
     }

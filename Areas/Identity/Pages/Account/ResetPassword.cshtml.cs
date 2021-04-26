@@ -33,14 +33,14 @@ namespace Album.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "{0} dài {2} đến {1} ký tự.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} is from {2} to {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu")]
+            [Display(Name = "password")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Nhập lại mật khẩu")]
-            [Compare("Password", ErrorMessage = "Password phải giống nhau.")]
+            [Display(Name = "Enter the password")]
+            [Compare("Password", ErrorMessage = "Password must be the same.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
@@ -50,7 +50,7 @@ namespace Album.Areas.Identity.Pages.Account
         {
             if (code == null)
             {
-                return BadRequest("Mã token không có.");
+                return BadRequest("Token code is not available.");
             }
             else
             {

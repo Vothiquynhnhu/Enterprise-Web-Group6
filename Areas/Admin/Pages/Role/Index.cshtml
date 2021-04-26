@@ -1,14 +1,14 @@
 ﻿@page "/admin/role/"
 @model IndexModel
 
-<h1>Danh sách các role</h1>
+<h1>Role list</h1>
 <partial name="_StatusMessage" model="@Model.StatusMessage" />
 
 <form method="POST" class="my-1 d-inline">
     <button class="btn btn-secondary" asp-page="./Add" 
-            asp-page-handler="StartNewRole">Thêm mới Role</button>
+            asp-page-handler="StartNewRole">Role New</button>
 </form>
-<a class="btn btn-secondary" asp-page="./User">Gán role cho người dùng</a>
+<a class="btn btn-secondary" asp-page="./User">Assign a role to the user</a>
 
 
 <table class="table">
@@ -25,7 +25,7 @@
         <td>
             <form method="POST" class="d-inline">
               <button name="Input.ID" value="@role.Id" class="btn btn-success btn-sm" 
-                      asp-page="./Add" asp-page-handler="StartUpdate">Cập nhật Role</button>
+                      asp-page="./Add" asp-page-handler="StartUpdate">Role updates</button>
             </form>
 
             
@@ -37,7 +37,7 @@
 
             <form method="POST" class="d-inline">
               <button name="Input.ID" value="@role.Id" class="btn btn-success btn-sm" 
-                      asp-page="./Delete">Xóa Role</button>
+                      asp-page="./Delete">Delete Role</button>
             </form>
 
         </td>

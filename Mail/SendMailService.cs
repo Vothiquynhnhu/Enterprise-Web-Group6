@@ -56,7 +56,7 @@ namespace Album.Mail {
                 var emailsavefile = string.Format (@"mailssave/{0}.eml", Guid.NewGuid ());
                 await message.WriteToAsync (emailsavefile);
 
-                logger.LogInformation ("Lỗi gửi mail, lưu tại - " + emailsavefile);
+                logger.LogInformation ("Error sending mail, save at - " + emailsavefile);
                 logger.LogError (ex.Message);
             }
 

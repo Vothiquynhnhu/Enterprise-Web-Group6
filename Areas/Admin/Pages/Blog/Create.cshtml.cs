@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.Blog
 {//Admin,A Marketing Management,A Marketing Coordinator
+
+    [Authorize(Roles = "Admin,A Marketing Management,A Marketing Coordinator")]
     public class CreateModel : PageModel
     {
         private readonly AppDbContext _context;

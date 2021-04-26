@@ -36,15 +36,15 @@ namespace Album.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return NotFound($"Không có user với email: '{email}'.");
+                return NotFound($"No user with email: '{email}'.");
             }
 
             if (user.EmailConfirmed) {
                 // Tài khoản đã xác thực email
                 return ViewComponent(MessagePage.COMPONENTNAME,
                         new MessagePage.Message() {
-                            title = "Thông báo",
-                            htmlcontent = "Tài khoản đã xác thực, chờ chuyển hướng",
+                            title = "Notification",
+                            htmlcontent = "Account authenticated, waiting for redirection",
                             urlredirect = (returnUrl != null) ? returnUrl : Url.Page("/Index")
                         }
 

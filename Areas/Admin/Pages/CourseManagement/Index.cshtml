@@ -4,13 +4,13 @@
 }
 
 @{
-    ViewData["Title"] = "Danh sách Course";
+    ViewData["Title"] = "Course list";
 }
 
-<h1>Danh sách Course</h1>
+<h1>Course list</h1>
 
 <p>
-    <a asp-page="Create">Tạo mới</a>
+    <a asp-page="Create">Create New</a>
 </p>
 <form method="get" asp-page="./Index">
     <p>
@@ -46,9 +46,9 @@
             
 
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.course_Id">Sửa</a> |
-                <a asp-page="./Details" asp-route-id="@item.course_Id">Xem</a> |
-                <a asp-page="./Delete" asp-route-id="@item.course_Id">Xóa</a> |
+                <a asp-page="./Edit" asp-route-id="@item.course_Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.course_Id">View</a> |
+                <a asp-page="./Delete" asp-route-id="@item.course_Id">Delete</a> |
                 <a asp-page="../Blog/ViewFindId"   asp-route-id="@item.course_Id" >List Events</a>
                 
 

@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Album.Data;
 using Album.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.Deadlines
 {//Admin,A Marketing Management,A Marketing Coordinator
+    [Authorize(Roles = "Admin,A Marketing Management,A Marketing Coordinator")]
+
     public class DeleteModel : PageModel
     {
         private readonly AppDbContext _context;

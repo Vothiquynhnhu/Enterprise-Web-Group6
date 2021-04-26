@@ -14,10 +14,10 @@ namespace Album.Models
 
         public int ID { get; set; }
 
-        [Display(Name = "Tên File")]
+        [Display(Name = "FileName")]
         public string Title { get; set; }
 
-        [Display(Name = "Thời hạn")]
+        [Display(Name = "Duration")]
         public int file_DeadlineId { get; set; }
         public Deadline Deadline { set; get; }
         public bool file_IsSelected { get; set; }

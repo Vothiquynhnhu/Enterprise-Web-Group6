@@ -33,7 +33,7 @@ namespace Album.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Nhập chính xác địa chỉ email")]
+            [Display(Name = "Enter the correct email address")]
             public string Email { get; set; }
         }
 
@@ -61,8 +61,8 @@ namespace Album.Areas.Identity.Pages.Account
                 // Gửi email
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Đặt lại mật khẩu",
-                    $"Để đặt lại mật khẩu hãy <a href='{callbackUrl}'>bấm vào đây</a>.");
+                    "Reset Password",
+                    $"To reset your password please <a href='{callbackUrl}'>click here</a>.");
 
                 // Chuyển đến trang thông báo đã gửi mail để reset password
                 return RedirectToPage("./ForgotPasswordConfirmation");

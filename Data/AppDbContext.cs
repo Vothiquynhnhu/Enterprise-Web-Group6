@@ -40,6 +40,9 @@ namespace Album.Data {
             builder.ApplyConfiguration(new CommentConfigurations());
             builder.ApplyConfiguration(new FileConfigurations());
             builder.ApplyConfiguration(new RegisterCourseConfigurations());
+     //      builder.ApplyConfiguration(new GradeConfigurations());
+            builder.ApplyConfiguration(new RegisterGradeConfigurations());
+
 
 
 
@@ -47,11 +50,15 @@ namespace Album.Data {
         }
 
         public DbSet<Article> Article { set; get; }
+        public DbSet<RegisterGrade> RegisterGrade { set; get; }
+
         public DbSet<Comment> Comments { set; get; }
         public DbSet<Course> Courses { set; get; }
         public DbSet<Deadline> Deadline { set; get; }
         public DbSet<UserFile> userFiles { set; get; }
         public DbSet<RegisterCourse> RegisterCourse { set; get; }
+        public DbSet<GradeManagementt> gradeManagemens { set; get; }
+
 
 
     }

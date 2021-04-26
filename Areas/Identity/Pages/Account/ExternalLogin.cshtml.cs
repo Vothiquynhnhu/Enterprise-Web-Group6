@@ -48,7 +48,7 @@ namespace Album.Areas.Identity.Pages.Account {
         public class InputModel {
             [Required]
             [EmailAddress]
-            [Display (Name = "Địa chỉ email")]
+            [Display (Name = "Email address")]
             public string Email { get; set; }
         }
 
@@ -63,7 +63,7 @@ namespace Album.Areas.Identity.Pages.Account {
             var listprovider = (await _signInManager.GetExternalAuthenticationSchemesAsync ()).ToList ();
             var provider_process = listprovider.Find ((m) => m.Name == provider);
             if (provider_process == null) {
-                return NotFound ("Dịch vụ không chính xác: " + provider);
+                return NotFound ("Service is incorrect: " + provider);
             }
 
             // redirectUrl - là Url sẽ chuyển hướng đến - sau khi CallbackPath (/dang-nhap-tu-google) thi hành xong
@@ -88,7 +88,7 @@ namespace Album.Areas.Identity.Pages.Account {
             // Lấy thông tin do dịch vụ ngoài chuyển đến
             var info = await _signInManager.GetExternalLoginInfoAsync ();
             if (info == null) {
-                ErrorMessage = "Lỗi thông tin từ dịch vụ đăng nhập.";
+                ErrorMessage = "Error information from login service.";
                 return RedirectToPage ("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -135,7 +135,7 @@ namespace Album.Areas.Identity.Pages.Account {
             // Lấy lại Info
             var info = await _signInManager.GetExternalLoginInfoAsync ();
             if (info == null) {
-                ErrorMessage = "Không có thông tin tài khoản ngoài.";
+                ErrorMessage = "No external account information.";
                 return RedirectToPage ("./Login", new { ReturnUrl = returnUrl });
             }
 
@@ -165,13 +165,13 @@ namespace Album.Areas.Identity.Pages.Account {
                         return ViewComponent (MessagePage.COMPONENTNAME, new MessagePage.Message () {
                             title = "LIÊN KẾT TÀI KHOẢN",
                                 urlredirect = returnUrl,
-                                htmlcontent = $"Liên kết tài khoản {userWithexternalMail.UserName} với {info.ProviderDisplayName} thành công"
+                                htmlcontent = $"Account Links {userWithexternalMail.UserName} với {info.ProviderDisplayName} success"
                         });
                     } else {
                         return ViewComponent (MessagePage.COMPONENTNAME, new MessagePage.Message () {
-                            title = "LIÊN KẾT TÀI KHOẢN",
+                            title = "ACCOUNT LINKS",
                                 urlredirect = Url.Page ("Index"),
-                                htmlcontent = $"Liên kết thất bại"
+                                htmlcontent = $"The link failed"
                         });
                     }
                 }
@@ -184,16 +184,16 @@ namespace Album.Areas.Identity.Pages.Account {
                     // Liên kết tài khoản ngoài với tài khoản vừa tạo
                     result = await _userManager.AddLoginAsync (user, info);
                     if (result.Succeeded) {
-                        _logger.LogInformation ("Đã tạo user mới từ thông tin {Name}.", info.LoginProvider);
+                        _logger.LogInformation ("New user created from info {Name}.", info.LoginProvider);
                         // Email tạo tài khoản và email từ info giống nhau -> xác thực email luôn
                         if (user.Email == externalMail) {
                             var codeactive = await _userManager.GenerateEmailConfirmationTokenAsync (user);
                             await _userManager.ConfirmEmailAsync (user, codeactive);
                             await _signInManager.SignInAsync (user, isPersistent : false, info.LoginProvider);
                             return ViewComponent (MessagePage.COMPONENTNAME, new MessagePage.Message () {
-                                title = "TẠO VÀ LIÊN KẾT TÀI KHOẢN",
+                                title = "CREATE AND LINK ACCOUNTS",
                                     urlredirect = returnUrl,
-                                    htmlcontent = $"Đã tạo và liên kết tài khoản, kích hoạt email thành công"
+                                    htmlcontent = $"Account created and linked, email activation is successful"
                             });
                         }
 
@@ -209,8 +209,8 @@ namespace Album.Areas.Identity.Pages.Account {
                             protocol : Request.Scheme);
 
                         // Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.
-                        await _emailSender.SendEmailAsync (Input.Email, "Xác nhận địa chỉ email",
-                            $"Hãy xác nhận địa chỉ email bằng cách <a href='{callbackUrl}'>bấm vào đây</a>.");
+                        await _emailSender.SendEmailAsync (Input.Email, "Verify email address",
+                            $"Hãy xác nhận địa chỉ email bằng cách <a href='{callbackUrl}'>click here</a>.");
 
                         // Chuyển đến trang thông báo cần kích hoạt tài khoản
                         if (_userManager.Options.SignIn.RequireConfirmedEmail) {

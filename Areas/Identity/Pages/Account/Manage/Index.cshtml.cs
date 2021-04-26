@@ -21,7 +21,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage {
             _signInManager = signInManager;
         }
 
-        [Display(Name = "Tên tài khoản")]
+        [Display(Name = "account name")]
         public string Username { get; set; }
 
         [TempData]
@@ -32,19 +32,19 @@ namespace Album.Areas.Identity.Pages.Account.Manage {
 
         public class InputModel {
             [Phone]
-            [Display (Name = "Số điện thoại")]
+            [Display (Name = "phone number")]
             public string PhoneNumber { get; set; }
 
             [MaxLength (100)]
-            [Display(Name = "Họ tên đầy đủ")]
+            [Display(Name = "Full name")]
             public string FullName { set; get; }
 
             [MaxLength (255)]
-            [Display(Name = "Địa chỉ")]
+            [Display(Name = "Address")]
             public string Address { set; get; }
 
             [DataType (DataType.Date)]
-            [Display(Name = "Ngày sinh d/m/y")]
+            [Display(Name = "Date of birth d / m / y")]
             [ModelBinder(BinderType=typeof(DayMonthYearBinder))]
             [DisplayFormat(ApplyFormatInEditMode=true, DataFormatString = "{0:dd/MM/yyyy}")]
             public DateTime? Birthday { set; get; }
@@ -68,7 +68,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage {
             var user = await _userManager.GetUserAsync (User);
 
             if (user == null) {
-                return NotFound ($"Không tải được tài khoản ID = '{_userManager.GetUserId(User)}'.");
+                return NotFound ($"Failed to load account ID = '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync (user);
@@ -79,7 +79,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage {
             var user = await _userManager.GetUserAsync (User);
             
             if (user == null) {
-                return NotFound ($"Không có tài khoản ID: '{_userManager.GetUserId(User)}'.");
+                return NotFound ($"No account ID: '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid) {
@@ -91,7 +91,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage {
             if (Input.PhoneNumber != phoneNumber) {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync (user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded) {
-                    StatusMessage = "Lỗi cập nhật số điện thoại.";
+                    StatusMessage = "Error updating phone number.";
                     return RedirectToPage ();
                 }
             }
@@ -104,7 +104,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage {
 
             // Đăng nhập lại để làm mới Cookie (không nhớ thông tin cũ)
             await _signInManager.RefreshSignInAsync (user);
-            StatusMessage = "Hồ sơ của bạn đã cập nhật";
+            StatusMessage = "Your profile has been updated";
             return RedirectToPage ();
         }
     }

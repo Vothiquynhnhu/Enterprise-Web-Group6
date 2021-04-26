@@ -8,10 +8,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Album.Data;
 using Album.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.Blog
 {
     //Admin,A Marketing Management,A Marketing Coordinator
+    [Authorize(Roles = "Admin,A Marketing Management,A Marketing Coordinator")]
+
     public class EditModel : PageModel
     {
         private readonly AppDbContext _context;

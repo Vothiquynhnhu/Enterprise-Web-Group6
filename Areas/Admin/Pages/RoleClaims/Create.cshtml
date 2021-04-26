@@ -2,12 +2,12 @@
 @model Album.Areas.Admin.Pages.RoleClaims.CreateModel
 
 @{
-    ViewData["Title"] = "Tạo Claim";
+    ViewData["Title"] = "Create Claim";
 }
 
-<h1>Tạo Claim cho role @Model.role.Name</h1>
+<h1>Create Claim for the role @Model.role.Name</h1>
 
-<h4>Biện tập Claim</h4>
+<h4>Rehearsal Claim</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,7 +31,7 @@
 </div>
 
 <div>
-    <a asp-page="Index" asp-route-roleid="@Model.role.Id">Quay lại danh sách</a>
+    <a asp-page="Index" asp-route-roleid="@Model.role.Id">Users List</a>
 </div>
 
 @section Scripts {

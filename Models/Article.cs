@@ -13,18 +13,20 @@ namespace Album.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name = "Tiêu đề")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
-        [Display(Name = "Ngày đăng")]
+        [Display(Name = "Date Submitted")]
         [DataType(DataType.Date)]
         public DateTime PublishDate { get; set; }
 
-        [Display(Name = "Nội dung")]
+        [Display(Name = "Content")]
         public string Content { set; get; }
        // public List<RegisterEventCourse> RegisterEventCourse { get; set; }
         public List<Deadline> Deadline { get; set; }
         public int courseId { get; set; }
         public Course course { get; set; }
+        public List<RegisterGrade> RegisterGrade { get; set; }
+
     }
 }

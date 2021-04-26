@@ -1,9 +1,9 @@
 ﻿@page "/file-management/"
 @model Album.Areas.Admin.Pages.fileManagement.IndexModel
 @{
-    ViewData["Title"] = "Danh sách File";
+    ViewData["Title"] = "File List";
 }
-<h1>Danh sách File</h1>
+<h1>File List</h1>
 
 <form method="get" asp-page="./Index">
     <p>
@@ -12,25 +12,25 @@
     </p>
 </form>
 
-<form method="post" asp-page="./Index">
-    <p>
-        <input type="checkbox" asp-for="@Model.checkboxaa" checked="@Model.checkboxaa">
-        <label asp-for="checkboxaa"></label><br>
-        <input type="submit" value="check" />
-    </p>
-</form>
 
 <form method="post" asp-page="./Index">
     <p>
-        <input type="checkbox" asp-for="@Model.sort" checked="@Model.sort">
-        <label asp-for="sort"></label><br>
-        <input type="submit" value="Sort Select" />
+        <select asp-for="@Model.NameSort">
+            <option value="All">All</option>
+            @{
+                foreach (var item in Model.sortEvent)
+                {
+                    <option value="@item">@item</option>
+                }
+            }
+        </select>
+        <input type="submit" value="Sort" />
     </p>
 </form>
 
 <form method="get" asp-page="./DownFile"  >
     <p>
-        <input type="submit" value="Sort Select New" />
+        <input type="submit" value="Sort Select New" method="get" asp-page="./DownFile" />
     </p>
 </form>
 
@@ -81,7 +81,7 @@
                     </td>
                     <td>
 
-                        <label asp-for="@Model.FileManagementList[i]"><a href="#">@Model.FileManagementList[i].NameFile</a></label>
+                        <a href="/openpdf/">@Model.FileManagementList[i].NameFile</a>
                         <input asp-for="@Model.FileManagementList[i].NameFile" value="@Model.FileManagementList[i].NameDeadline" hidden />
                     </td>
                     <td>
@@ -91,7 +91,7 @@
                 </tr>
             }
         }
-        
+
 
     </table>
     <input type="submit" value="Save" class="btn btn-primary" />

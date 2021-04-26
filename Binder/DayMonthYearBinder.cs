@@ -34,7 +34,7 @@ namespace Album.Binder {
                 date = DateTime.ParseExact (valueStrinng, "dd/MM/yyyy", null);
             } catch {
 
-                bindingContext.ModelState.TryAddModelError (modelName, "Nhập ngày tháng bị sai - yêu cầu định dạng dd/MM/yyyy (ví dụ 20/11/2020)");
+                bindingContext.ModelState.TryAddModelError (modelName, "Incorrect date input - dd / MM / yyyy format required (for example 11/20/2020)");
                 return Task.CompletedTask;
             }
             if (date < DateTime.Parse ("1/1/1945")) {

@@ -6,9 +6,12 @@ using Album.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Album.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.CourseManagement
 {//Admin,A Marketing Management,A Marketing Coordinator
+    [Authorize(Roles = "Admin,A Marketing Management,A Marketing Coordinator")]
+
     public class AddUserModel : PageModel
     {
 

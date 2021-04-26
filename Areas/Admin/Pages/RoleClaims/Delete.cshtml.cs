@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Album.Areas.Admin.Pages.RoleClaims;
 using Album.Data;
 using Album.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Album.Areas.Admin.Pages.RoleClaims
 {//Admin
+    [Authorize(Roles = "Admin")]
+
     public class DeleteModel : PageModel {
         private readonly AppDbContext _context;
         private readonly RoleManager<IdentityRole> _roleManager;

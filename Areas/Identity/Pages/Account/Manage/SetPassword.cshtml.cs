@@ -32,14 +32,14 @@ namespace Album.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required]
-            [StringLength(100, ErrorMessage = "{0} dài {2} đến {1} ký tự.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} is from {2} to {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Mật khẩu mới")]
+            [Display(Name = "A new password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Nhập lại mật khẩu")]
-            [Compare("NewPassword", ErrorMessage = "Mật khẩu phải giống nhau.")]
+            [Display(Name = "Enter the password")]
+            [Compare("NewPassword", ErrorMessage = "Password must be the same.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -48,7 +48,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Lỗi tải User ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Error loading User ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -71,7 +71,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Lỗi tải User ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Error loading User ID '{_userManager.GetUserId(User)}'.");
             }
 
             var addPasswordResult = await _userManager.AddPasswordAsync(user, Input.NewPassword);
@@ -85,7 +85,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Password đã thiết lập.";
+            StatusMessage = "Password set.";
 
             return RedirectToPage();
         }

@@ -36,18 +36,18 @@ namespace Album.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Password)]
-            [Display(Name = "Password hiện tại")]
+            [Display(Name = "Current password")]
             public string OldPassword { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "{0} dài {2} đến {1} ký tự.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "{0} is from {2} to {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password mới")]
+            [Display(Name = "New password")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Nhập lại password mới")]
-            [Compare("NewPassword", ErrorMessage = "Password phải giống nhau.")]
+            [Display(Name = "Re-enter a new password")]
+            [Compare("NewPassword", ErrorMessage = "Password must be the same.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -56,7 +56,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Lỗi nạp User với ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Error loading User with ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -78,7 +78,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Lỗi nạp User với ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Error loading User with ID '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
@@ -93,7 +93,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Đã thay đổi password thành công.";
+            StatusMessage = "Password successfully changed.";
 
             return RedirectToPage();
         }

@@ -46,7 +46,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [EmailAddress]
-            [Display(Name = "Đổi sang email mới")]
+            [Display(Name = "Change to a new email")]
             public string NewEmail { get; set; }
         }
 
@@ -68,7 +68,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Khôg nạp được tài khoản ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Can not load ID account '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -80,7 +80,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Khôg nạp được tài khoản ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Can not load ID account '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -102,14 +102,14 @@ namespace Album.Areas.Identity.Pages.Account.Manage
                     protocol: Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
-                    "Xác nhận",
-                    $"Hãy xác nhận Email của bạn bằng cách <a href='{callbackUrl}'>bấm vào đây</a>.");
+                    "Confirm",
+                    $"Please confirm your Email by <a href='{callbackUrl}'>click here</a>.");
 
-                StatusMessage = "Hãy mở email để xác nhận thay đổi";
+                StatusMessage = "Please open your email to confirm the changes";
                 return RedirectToPage();
             }
 
-            StatusMessage = "Bạn đã thay đổi email.";
+            StatusMessage = "You have changed email.";
             return RedirectToPage();
         }
 
@@ -118,7 +118,7 @@ namespace Album.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Khôg nạp được tài khoản ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Can not load ID account '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -138,10 +138,10 @@ namespace Album.Areas.Identity.Pages.Account.Manage
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Xác nhận Email",
-                $"Xác nhận email <a href='{callbackUrl}'>bấm vào đây</a>.");
+                "Confirm Email",
+                $"Confirm Email<a href='{callbackUrl}'>click here</a>.");
 
-            StatusMessage = "Hãy mở email để xác nhận";
+            StatusMessage = "Please open the email to confirm";
             return RedirectToPage();    
         }
     }

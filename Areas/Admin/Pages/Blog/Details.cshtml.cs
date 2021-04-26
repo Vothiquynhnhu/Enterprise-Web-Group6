@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Album.Data;
 using Album.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Album.Areas.Admin.Pages.Blog
 {
     //Admin,A Marketing Management,A Marketing Coordinator,Student
+    [Authorize(Roles = "Admin,A Marketing Management,A Marketing Coordinator")]
+
     public class DetailsModel : PageModel
     {
         private readonly Album.Data.AppDbContext _context;

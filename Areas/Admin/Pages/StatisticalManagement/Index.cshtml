@@ -1,0 +1,50 @@
+﻿@page "/thong-ke"
+@model Album.Areas.Admin.Pages.StatisticalManagement.IndexModel
+@{
+}
+
+
+<h1> Table Statistical</h1>
+<hr />
+<h2>Assignment 1</h2>
+<table border="2px" class="table">
+    <tr>
+        <td rowspan="2"> Statistical</td>
+        <td>Assignment 1</td>
+    </tr>
+    <tr>
+        <td>Yes</td>
+    </tr>
+    @{
+        foreach (var item in Model.statisticalAsm1List)
+        {
+            <tr>
+                <td>@item.st_NameEvent1</td>
+                <td>@item.st_Deadline1</td>
+            </tr>
+        }
+
+    }
+</table>
+<hr />
+<h2>Assignment 2</h2>
+<table border="2px" class="table">
+    <tr>
+        <td rowspan="2"> Statistical</td>
+        <td>Assignment 2</td>
+
+    </tr>
+    <tr>
+        <td>Yes</td>
+    </tr>
+    @{
+        foreach (var item in Model.statisticalAsm2List )
+        {
+            <tr>
+                <td>@item.st_NameEvent2</td>
+                <td>@item.st_Deadline2</td>
+            </tr>
+        }
+    }
+</table>
+
